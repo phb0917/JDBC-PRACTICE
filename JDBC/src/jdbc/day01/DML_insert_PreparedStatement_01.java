@@ -32,7 +32,7 @@ public class DML_insert_PreparedStatement_01 {
 			
 			// >>> 2. 어떤 오라클 서버에 연결을 할래? <<<
 			System.out.print("▷ 연결할 오라클 서버의 IP 주소 : ");
-			String ip = sc.nextLine(); // 127.0.0.1  192.168.10.221
+			String ip = sc.nextLine(); // 127.0.0.1  // 192.168.10.210
 			
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@"+ip+":1521:xe", "JDBC_USER", "seven");
 		
@@ -48,24 +48,26 @@ public class DML_insert_PreparedStatement_01 {
 			
 			System.out.print("▷ 글내용 : ");
 			String msg = sc.nextLine();
-			
-			
-		/*	String sql = " insert into tbl_memo(no, name, msg) "
+		
+		/*	
+			String sql = " insert into tbl_memo(no, name, msg) "
 					   + " values(seq_memo.nextval, '"+name+"', '"+msg+"')";
 			// sql문 뒤에 ; 을 넣으면 오류이다.!!!!
 			// 위와 같이 변수의 값을 직접 SQL문에 대입시켜 버리면 외부에서 입력한 데이터값이 보여지므로 보안상 위험해집니다.
-			// 그래서 아래처럼 위치홀더를 사용합니다 
+			// 그래서 아래처럼 위치홀더(?)를 사용합니다.
 		*/	
 			String sql = " insert into tbl_memo(no, name, msg) "
 					   + " values(seq_memo.nextval, ?, ?)";
-			// ? 를 "위치홀더" 라고 부른다 
-			//SQL 문 뒤에 ; 을 넣으면 오류이다 
+			// ? 를 "위치홀더" 라고 부른다.!!!
+			// sql문 뒤에 ; 을 넣으면 오류이다.!!!!
+			
 			
 			// >>> 4. 연결한 오라클서버(conn)에 SQL문(편지)을 전달할 객체 PreparedStatement 객체(우편배달부) 생성하기 <<< 
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, name); // 1 은 String sql 에서 첫번째 위치홀더(?)를 말한다. 첫번째 위치홀더(?)에 name 을 넣어준다.
-			pstmt.setString(2, msg); // 2 는 String sql 에서 두번째 위치홀더(?)를 말한다. 두번째 위치홀더(?)에 msg  를 넣어준다.
+			pstmt.setString(2, msg);  // 2 는 String sql 에서 두번째 위치홀더(?)를 말한다. 두번째 위치홀더(?)에 msg  를 넣어준다.
+			
 			System.out.println("~~~ 확인용 sql => "+sql);
 			
 			
@@ -140,4 +142,5 @@ public class DML_insert_PreparedStatement_01 {
 		System.out.println("~~~ 프로그램 종료 ~~~");
 		
 	}// end of main(String[] args)------------------
+
 }

@@ -156,27 +156,28 @@ public class DQL_select_where_PreparedStatement_03 {
 				System.out.print("▷ 번호선택 : ");
 				menuNo = sc.nextLine();
 				
-				String colName = ""; // where 절에 들어올 컬럼명
-				String searchtype = "";
+				String colName = "";    // where 절에 들어올 컬럼명
+				String searchType = "";
+				
 				switch (menuNo) {
 					case "1": // 글번호
 						colName = "no";
-						searchtype = "글번호";
+						searchType = "글번호";
 						break;
 						
 					case "2": // 글쓴이
 						colName = "name";
-						searchtype = "글쓴이";
+						searchType = "글쓴이";
 						break;
 						
 					case "3": // 글내용
 						colName = "msg";
-						searchtype = "글내용";
+						searchType = "글내용";
 						break;
 						
 					case "4": // 작성일자
 						colName = "to_char(writeday, 'yyyy-mm-dd')";
-						searchtype = "작성일자";
+						searchType = "작성일자";
 						break;
 						
 					case "5": // 종료
@@ -203,15 +204,15 @@ public class DQL_select_where_PreparedStatement_03 {
 					
 					if( !"3".equals(menuNo) ) { // 글번호, 글쓴이, 작성일자 검색시
 						
-						if("1".equals(menuNo))
-						sql += " where "+colName+" = to_number(?) ";
+						if("1".equals(menuNo)) {
+							sql += " where "+colName+" = to_number(?) ";
+						}
 						/*
 					       !!!! 중요 !!!!
 					       컬럼명 또는 테이블명은 위치홀더인 ? 를 쓰면 안되고 
 					       반드시 변수로 처리 해야 한다.!!!!!
 					       데이터값만 위치홀더인 ? 를 써야 한다.!!!!! 
 					    */
-						
 						else {
 							sql += " where "+colName+" = ? ";
 						}
@@ -244,6 +245,7 @@ public class DQL_select_where_PreparedStatement_03 {
 					sb.setLength(0);
 					
 					int cnt = 0;
+					
 					while(rs.next()) {
 						cnt++;
 						
@@ -265,13 +267,13 @@ public class DQL_select_where_PreparedStatement_03 {
 						
 					}// end of while(rs.next())------------------------
 					
-					if (cnt > 0 ) { // 검색되어진 결과물이 존재하는 경우 
-					System.out.println(sb.toString());
+					if(cnt > 0) { // 검색되어진 결과물이 존재하는 경우 
+						System.out.println(sb.toString());
 					}
-					else { // 검색되어진 결과물이 없을 떄 
-						System.out.println(">>> " + searchtype + " 중에 " + search + "에 해당하는 데이터는 없습니다 ");
-						
+					else { // 검색되어진 결과물이 없을 경우 
+						System.out.println(">>> "+ searchType +" 중에 "+ search +"에 해당하는 데이터는 없습니다. <<<\n");
 					}
+					
 				} // end of if(!"5".equals(menuNo))-----------
 				
 				// ---------------------------------------------------- //
@@ -311,4 +313,3 @@ public class DQL_select_where_PreparedStatement_03 {
 	}// end main(String[] args)---------------------
 
 }
-

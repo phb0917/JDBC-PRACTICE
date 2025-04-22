@@ -167,8 +167,3 @@ public class DDL_create_drop_PreparedStatement_06 {
 	}// end of main(String[] args)----------------------------
 
 }
-
-
-	
-
-

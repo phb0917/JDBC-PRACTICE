@@ -143,8 +143,8 @@ public class DML_update_PreparedStatement_04 {
 			do {
 				System.out.print("▷ 수정할 글번호 : "); 
 				no = sc.nextLine(); // 3
-				                           // sdfsdfsdf 
-				                           // 92384
+				                    // sdfsdfsdf 
+				                    // 92384
 				
 				sql = " select name, msg "
 					+ " from tbl_memo "
@@ -279,8 +279,7 @@ public class DML_update_PreparedStatement_04 {
 		
 		sc.close();
 		System.out.println("~~~ 프로그램 종료 ~~~");
-
+		
 	}// end main(String[] args)---------------------
 
 }
-
